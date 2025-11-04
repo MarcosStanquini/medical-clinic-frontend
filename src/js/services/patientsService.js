@@ -23,3 +23,20 @@ async function createPatient(e){
     }
 }
 
+
+async function getData() {
+  const url = "https://ifsp.ddns.net/webservices/clinicaMedica/pacientes";
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`Response status: ${response.status}`);
+    const data = await response.json();
+    for (const patient of data) {
+      insertPatientList(patient.nome, patient.dataNascimento);
+    }
+  } catch (err) {
+    console.error(err);
+    throw new Error(err.message);
+  }
+}
+
+getData();

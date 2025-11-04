@@ -1,24 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacientes</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Médica</title>
+ 
+  <link rel="stylesheet" href="../css/doctor.css">
+  
 </head>
 <body>
-    <form>
-    
-    
-    <input type="text" name="name" placeholder="Digite o nome do paciente:">
-    <p>Digite a data de nascimento:</p>
-    <input type="date" name="data-nascimento">
-    <button type="submit">Enviar</button>
 
-    </form>
-    
+  <header>
+    <h1>🩺 Clínica Médica</h1>
+  </header>
 
-    <script src="../js/services/patientsService.js"></script>
-    <script src="../js/pages/patient.js"></script>
+
+  <nav>
+    <button>Médicos</button>
+    <button class="active">Pacientes</button>
+    <button>Consultas</button>
+  </nav>
+
+  <main>
+    <section class="card">
+    <p class="title">Cadastrar Paciente </p>
+    <form id="form-paciente">
+        <label for="nome">Nome</label>
+        <input
+          type="text"
+          id="nome"
+          name="nome"
+          placeholder=""
+          required>
+
+
+        <label class="lab-birthday" for="dataNascimento">Data de Nascimento</label>
+        <input
+          type="date"
+          id="dataNascimento"
+          name="data-nascimento"
+          required>
+
+        <button class="btt-submit" type="submit">Cadastrar</button>
+      </form>
+    </section>
+
+    <div class="lista-pacientes">
+        <p class="title">Lista de Pacientes</p>
+        
+
+    </div>
+
+  </main>
+  
+<script src="../js/services/patientsService.js"></script>
+<script src="../js/pages/patient.js"></script>
 
 </body>
 </html>
+
