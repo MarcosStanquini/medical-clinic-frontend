@@ -1,9 +1,12 @@
+const BASE_URL = "https://ifsp.ddns.net/webservices/clinicaMedica";
+
+
 async function createPatient(e){
     e.preventDefault()
 
     let body = patientData()
     try{
-        let response = await fetch("https://ifsp.ddns.net/webservices/clinicaMedica/pacientes", {
+        let response = await fetch(`${BASE_URL}/pacientes`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,18 +28,18 @@ async function createPatient(e){
 
 
 async function getData() {
-  const url = "https://ifsp.ddns.net/webservices/clinicaMedica/pacientes";
   try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`Response status: ${response.status}`);
-    const data = await response.json();
-    for (const patient of data) {
-      insertPatientList(patient.nome, patient.dataNascimento);
-    }
-  } catch (err) {
-    console.error(err);
+    const response = await fetch(`${BASE_URL}/pacientes`);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+      const data = await response.json();
+      for (const patient of data) {
+        insertPatientList(patient.nome, patient.dataNascimento);
+      }
+    } catch (err) {
     throw new Error(err.message);
-  }
+    }
 }
 
 getData();
