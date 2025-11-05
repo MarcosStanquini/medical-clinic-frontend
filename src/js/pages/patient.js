@@ -37,7 +37,3 @@ function insertPatientList(name, dateOfBirth) {
   container.append(div);
 }
 
-const form = document.querySelector('form');
-form.addEventListener('submit', createPatient);
-
-

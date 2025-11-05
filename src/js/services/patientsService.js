@@ -3,7 +3,6 @@ const BASE_URL = "https://ifsp.ddns.net/webservices/clinicaMedica";
 
 async function createPatient(e){
     e.preventDefault()
-
     let body = patientData()
     try{
         let response = await fetch(`${BASE_URL}/pacientes`, {
@@ -15,14 +14,14 @@ async function createPatient(e){
         })
         const result = await response.json()
         if(result.msg){
+            showToast(String(result.msg), "error")
             throw new Error(result.msg)
         }
-        console.log(result)
-        alert("Paciente cadastrado com sucesso!");
+        showToast("Paciente criado com sucesso!", "success")
         e.target.reset()
         
     }catch(err){
-        alert(`Erro ao cadastrar paciente: ${err.message}`);
+        showToast(String(result.msg), "error")
     }
 }
 
