@@ -1,4 +1,4 @@
-function showToast(message, type = "success") {
+export function showToast(message, type = "success") {
   const toast = document.createElement("div");
 
   const colors = {

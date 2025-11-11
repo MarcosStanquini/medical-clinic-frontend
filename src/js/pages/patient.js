@@ -1,6 +1,7 @@
 import {ButtonClass} from "./enums/targetButtonEnum.js"
+import { createPatient, getData, deletePatient } from "../services/patientsService.js"
 
-function patientData(){
+export function patientData(){
     const form = document.querySelector("form")
 
     let name = form.querySelector('input[name="nome"]').value
@@ -12,7 +13,7 @@ function patientData(){
     }
 }
 
-function insertPatientList(name, dateOfBirth, id) {
+export function insertPatientList(name, dateOfBirth, id) {
   const container = document.querySelector("#lista-pacientes")
 
   const div = document.createElement("div");
@@ -39,7 +40,6 @@ function insertPatientList(name, dateOfBirth, id) {
   container.append(div);
 }
 
-
 function removePatientDiv(bttn){
   let div = bttn.parentElement.parentElement
   if(div){
@@ -62,11 +62,8 @@ async function handlerTargetClass(targetClass){
   });
 }
 
-
 const form = document.querySelector('form');
 form.addEventListener('submit', createPatient);
 
 handlerTargetClass(ButtonClass.DELETE)
 handlerTargetClass("edit-patient")
-
-

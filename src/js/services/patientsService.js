@@ -1,8 +1,12 @@
+import { patientData,  insertPatientList } from "../pages/patient.js";
+import { showToast} from "../utils/toast.js";
+
 const BASE_URL = "https://ifsp.ddns.net/webservices/clinicaMedica";
 
-async function createPatient(e){
-    e.preventDefault()
+export async function createPatient(e){
+    e.preventDefault() 
     let body = patientData()
+    
     try{
         let response = await fetch(`${BASE_URL}/pacientes`, {
             method: "POST",
@@ -12,56 +16,67 @@ async function createPatient(e){
             body: JSON.stringify(body),
         })
         const result = await response.json()
-        if(result.msg){
-            showToast(String(result.msg), "error")
-            throw new Error(result.msg)
+
+        if(!response.ok){
+          throw new Error(String(result.msg))
         }
+
         insertPatientList(body.nome, body.dataNascimento, result.id)
         showToast("Paciente criado com sucesso!", "success")
         e.target.reset()
         
     }catch(err){
-        showToast(String(result.msg), "error")
+        if(!err.message){
+          err.message = "Algo inesperado aconteceu!"
+        }
+        showToast(err.message, "error")
     }
 }
 
-async function getData() {
+
+export async function getData() {
   try {
     const response = await fetch(`${BASE_URL}/pacientes`);
       if (!response.ok) {
         throw new Error(`Response status: ${response.status}`);
       }
-      const data = await response.json();
-      for (const patient of data) {
+      const result = await response.json();
+
+      if(!Array.isArray(result)){
+        throw new Error("Formato inesperado!")
+      }
+
+      for (const patient of result) {
         insertPatientList(patient.nome, patient.dataNascimento, patient.id);
       }
     } catch (err) {
-    throw new Error(err.message);
+      console.error(err)
     }
-}
+} 
 
 
-async function deletePatient(e){
+export async function deletePatient(e){
     const patientId = e.getAttribute('patient-id');
     try{
         let response = await fetch(`${BASE_URL}/pacientes/${patientId}`, {
             method: "DELETE", 
         })
-        if (!response.ok) {
-          showToast(`Erro ao deletar o paciente!`, "error");
-          return false;
-        }
+
         const result = await response.json()
-        if (result.msg && result.msg.toLowerCase().includes("erro")) {
-          showToast(result.msg, "error");
-          return false;
+
+        if (!response.ok) {
+          throw new Error(String(result.msg))
         }
 
-        showToast(result.msg || "Paciente deletado com sucesso!", "success");
-        return true;
+        showToast("Paciente deletado com sucesso!", "success");
+        return true
 
     }catch(err){
-        showToast(String(err.message), "error")
+        if(!err.message){
+          err.message = "Algo inesperado aconteceu ao deletar!"
+        }
+        showToast(err.message, "error")
+        return false
     }
 }
 
