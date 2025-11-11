@@ -22,7 +22,6 @@ function showToast(message, type = "success") {
     setTimeout(() => (toast.className += " hidden"), 300);
   }, 3000);
 }
-const form = document.querySelector('form');
-form.addEventListener('submit', createPatient);
+
 
 

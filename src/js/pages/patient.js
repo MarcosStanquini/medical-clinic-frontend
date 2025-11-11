@@ -10,7 +10,7 @@ function patientData(){
     }
 }
 
-function insertPatientList(name, dateOfBirth) {
+function insertPatientList(name, dateOfBirth, id) {
   const container = document.querySelector("#lista-pacientes")
 
   const div = document.createElement("div");
@@ -22,13 +22,13 @@ function insertPatientList(name, dateOfBirth) {
       <p class="text-sm text-gray-500">Nascimento: ${dateOfBirth}</p>
     </div>
     <div class="flex gap-2">
-      <button class="p-2 bg-gray-100 rounded hover:bg-gray-200">
+      <button patient-id = "${id}" class="p-2 bg-gray-100 rounded hover:bg-gray-200">
         👁️
       </button>
-      <button class="p-2 bg-gray-100 rounded hover:bg-gray-200">
+      <button  patient-id="${id}" class="p-2 bg-gray-100 rounded hover:bg-gray-200">
         ✏️
       </button>
-      <button class="p-2 bg-red-600 text-white rounded hover:bg-red-500">
+      <button patient-id ="${id}" class="p-2 bg-red-600 text-white rounded hover:bg-red-500 delete-patient">
         🗑️
       </button>
     </div>
@@ -37,3 +37,26 @@ function insertPatientList(name, dateOfBirth) {
   container.append(div);
 }
 
+
+function removePatientDiv(bttn){
+  let div = bttn.parentElement.parentElement
+  if(div){
+    div.remove()
+  }
+}
+
+const form = document.querySelector('form');
+form.addEventListener('submit', createPatient);
+
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector("#lista-pacientes");
+
+  container.addEventListener("click", async function (event) {
+    if (event.target.classList.contains("delete-patient")) {
+      let isDeleted = await deletePatient(event.target);
+      if(isDeleted){
+        removePatientDiv(event.target)
+      }
+    }
+  });
+});

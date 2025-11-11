@@ -34,10 +34,36 @@ async function getData() {
       }
       const data = await response.json();
       for (const patient of data) {
-        insertPatientList(patient.nome, patient.dataNascimento);
+        insertPatientList(patient.nome, patient.dataNascimento, patient.id);
       }
     } catch (err) {
     throw new Error(err.message);
+    }
+}
+
+
+async function deletePatient(e){
+    const patientId = e.getAttribute('patient-id');
+    try{
+        let response = await fetch(`${BASE_URL}/pacientes/${patientId}`, {
+            method: "DELETE", 
+        })
+        if (!response.ok) {
+          showToast(`Erro ao deletar o paciente!`, "error");
+          return false;
+        }
+        const result = await response.json()
+        if (result.msg && result.msg.toLowerCase().includes("erro")) {
+          showToast(result.msg, "error");
+          return false;
+        }
+
+        showToast(result.msg || "Paciente deletado com sucesso!", "success");
+        return true;
+
+        
+    }catch(err){
+        showToast(String(err.message), "error")
     }
 }
 
