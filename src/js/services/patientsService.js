@@ -34,7 +34,7 @@ async function getData() {
       }
       const data = await response.json();
       for (const patient of data) {
-        insertPatientList(patient.nome, patient.dataNascimento);
+        insertPatientList(patient.nome, patient.dataNascimento, patient.id);
       }
     } catch (err) {
     throw new Error(err.message);

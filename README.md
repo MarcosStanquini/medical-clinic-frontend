@@ -30,8 +30,10 @@ Aplicação frontend desenvolvida para simular o gerenciamento de uma clínica m
 ## 🚀 Tecnologias Utilizadas
 
 - **HTML5** - Estruturação das páginas
-- **CSS3** - Estilização da interface
+- **CSS3 / Tailwind CSS v4** - Estilização moderna e responsiva
 - **JavaScript (Vanilla)** - Lógica de negócio e integração com API
+- **Fetch API** - Comunicação com o backend
+- **Vercel** - Deploy e hospedagem
 
 ## 🌐 Backend
 
