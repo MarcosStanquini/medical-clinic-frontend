@@ -1,3 +1,5 @@
+import {ButtonClass} from "./enums/targetButtonEnum.js"
+
 function patientData(){
     const form = document.querySelector("form")
 
@@ -45,18 +47,26 @@ function removePatientDiv(bttn){
   }
 }
 
+async function handlerTargetClass(targetClass){
+  document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector("#lista-pacientes");
+  
+    container.addEventListener("click", async function (event) {
+      if (event.target.classList.contains(targetClass)) {
+        let isDeleted = await deletePatient(event.target);
+        if(isDeleted){
+          removePatientDiv(event.target)
+        }
+      }
+    });
+  });
+}
+
+
 const form = document.querySelector('form');
 form.addEventListener('submit', createPatient);
 
-document.addEventListener("DOMContentLoaded", function () {
-  const container = document.querySelector("#lista-pacientes");
+handlerTargetClass(ButtonClass.DELETE)
+handlerTargetClass("edit-patient")
 
-  container.addEventListener("click", async function (event) {
-    if (event.target.classList.contains("delete-patient")) {
-      let isDeleted = await deletePatient(event.target);
-      if(isDeleted){
-        removePatientDiv(event.target)
-      }
-    }
-  });
-});
+

@@ -1,6 +1,5 @@
 const BASE_URL = "https://ifsp.ddns.net/webservices/clinicaMedica";
 
-
 async function createPatient(e){
     e.preventDefault()
     let body = patientData()
@@ -17,6 +16,7 @@ async function createPatient(e){
             showToast(String(result.msg), "error")
             throw new Error(result.msg)
         }
+        insertPatientList(body.nome, body.dataNascimento, result.id)
         showToast("Paciente criado com sucesso!", "success")
         e.target.reset()
         
@@ -24,7 +24,6 @@ async function createPatient(e){
         showToast(String(result.msg), "error")
     }
 }
-
 
 async function getData() {
   try {
@@ -61,7 +60,6 @@ async function deletePatient(e){
         showToast(result.msg || "Paciente deletado com sucesso!", "success");
         return true;
 
-        
     }catch(err){
         showToast(String(err.message), "error")
     }
