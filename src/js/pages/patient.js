@@ -29,7 +29,6 @@ export function closeModal(){
   const modal = document.querySelector("#modalPaciente")
   const modalContent = document.querySelector("#modalContent")
   
-
   modalContent.classList.remove("scale-100", "opacity-100")
   modalContent.classList.add("scale-95", "opacity-0")
   
@@ -114,6 +113,7 @@ function setupPatientActions(){
   })
 }
 
+
 document.addEventListener("DOMContentLoaded", function (){
   const formRegister = document.querySelector('#formCadastro');
   const formEdit = document.querySelector('#formEdicao');
@@ -122,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function (){
   
 
   setupPatientActions()
-
   formRegister.addEventListener('submit', createPatient);
   btnCloseModal.addEventListener('click', closeModal)
   btnCancelar.addEventListener('click', closeModal)

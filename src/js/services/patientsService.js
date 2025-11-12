@@ -83,8 +83,6 @@ export async function deletePatient(button){
 export async function updatePatient(e) {
   e.preventDefault()
   
-
-  
   const body = patientData(e.target)
   const patientId = e.target.getAttribute('patient-id')
 

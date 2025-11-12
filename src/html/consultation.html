@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consultas - Clínica Médica</title>
+
+  <link rel="stylesheet" href="../css/output.css">
+  
+</head>
+<body class="overflow-hidden">
+
+  <header class="bg-white shadow-sm py-4 px-6">
+    <div class="flex items-center justify-center gap-2">
+      <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+      </svg>
+      <h1 class="text-2xl font-bold text-gray-800">Clínica Médica</h1>
+    </div>
+  </header>
+
+  <nav class="bg-gradient-to-b from-blue-50 to-white px-6 py-4">
+    <div class="flex justify-center gap-2 max-w-6xl mx-auto">
+      <a href="medic.html">
+      <button class="px-6 py-3 rounded-lg font-medium text-gray-600 hover:bg-white hover:text-gray-800 transition-all duration-200">
+        Médicos
+      </button>
+      </a>
+      <a href="patient.html">
+      <button class="px-6 py-3 rounded-lg font-medium text-gray-600 hover:bg-white hover:text-gray-800 transition-all duration-200">
+        Pacientes
+      </button>
+        </a>
+      <a href="consultation.html">
+      <button class="px-6 py-3 rounded-lg font-medium bg-white text-gray-800 shadow-none active">
+        Consultas
+      </button>
+      </a>
+    </div>
+  </nav>
+
+  <main class="bg-[#F3FAFF] py-12 min-h-screen flex items-start justify-center">
+    <section class="w-full max-w-5xl px-6 mt-8">
+      <div class="bg-white p-10 rounded-2xl shadow-lg w-full border border-gray-200">
+        <h2 class="text-2xl font-bold mb-8 text-blue-700 flex items-center gap-3">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          Agendar Nova Consulta
+        </h2>
+
+        <form id="formAgendarConsulta" class="flex flex-col gap-6">
+          
+          <div>
+            <label for="paciente" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+              </svg>
+              Paciente
+            </label>
+            <select
+              id="paciente"
+              name="paciente"
+              class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm text-blue-600 bg-white"
+              required
+            >
+              <option value="" disabled selected>Selecione um paciente</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="medico" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+              <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+              Médico
+            </label>
+            <select
+              id="medico"
+              name="medico"
+              class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm text-blue-600 bg-white"
+              required
+            >
+              <option value="" disabled selected>Selecione um médico</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label for="data" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                Data
+              </label>
+              <input
+                type="date"
+                id="data"
+                name="data"
+                placeholder="dd/mm/aaaa"
+                class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                required
+              />
+            </div>
+
+            <div>
+              <label for="hora" class="block text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Hora
+              </label>
+              <input
+                type="time"
+                id="hora"
+                name="hora"
+                placeholder="--:--"
+                class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                required
+              />
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg py-4 px-6 w-full mt-4 text-base flex items-center justify-center gap-2 transition-colors duration-200">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            Agendar Consulta
+          </button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+  
+  <script type="module" src="../js/pages/consulta.js"></script>
+
+</body>
+</html>
