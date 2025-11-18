@@ -1,4 +1,4 @@
-import { patientData,  insertPatientList, closeModal} from "../pages/patient.js"
+import { patientData,  insertPatientList, closeModal, reloadPatientList} from "../pages/patient.js"
 import { showToast } from "../utils/toast.js"
 
 const BASE_URL = "https://ifsp.ddns.net/webservices/clinicaMedica"
@@ -52,6 +52,23 @@ export async function getData() {
     } catch (err) {
       console.error(err)
     }
+}
+
+export async function getPatients(){
+  try {
+    const response = await fetch(`${BASE_URL}/pacientes`)
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`)
+    }
+    const result = await response.json()
+    if(!Array.isArray(result)){
+      throw new Error("Formato inesperado!")
+    }
+    return result
+  } catch (err) {
+    console.error(err)
+    return []
+  }
 } 
 
 
@@ -103,6 +120,7 @@ export async function updatePatient(e) {
 
     closeModal()
     showToast("Paciente editado com sucesso!", "success")
+    await reloadPatientList()
 
   } catch (err) {
     if(!err.message){
